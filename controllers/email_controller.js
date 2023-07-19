@@ -262,13 +262,29 @@ const updateEmailController = async (req, res) => {
     }
 }
 
+const getAllEmailsList=async(req,res)=>{
+    try {
+        const emails = await EmailModel.find();
+        res.status(200).json({
+            "success": true,
+            "emails": emails
+        })
+    } catch (error) {
+        res.status(400).json({
+            "success": false,
+            "msg": error.message
+        })
+    }
+}
+
 module.exports = {
     uploadEmailsController, getEmailsController,
     addEmailsToContactListController,
     getSingleEmailController,
     deleteEmailController,
     getAllEmailsController,
-    updateEmailController
+    updateEmailController,
+    getAllEmailsList
 
 }
 
